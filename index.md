@@ -4,6 +4,8 @@
 
 layout: home
 ---
-## Welcome to my little blog.
+Welcome to my little blog.
 
-For more information about me, checkout http://samyclementz.fr 
+## This is a title
+
+This is my blog. For more information about me, checkout [my website](http://samyclementz.fr).
