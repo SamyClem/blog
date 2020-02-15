@@ -7,15 +7,15 @@
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="Density estimation" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p$ from the data $(X_1,\ldots,X_n)$." />
-<meta property="og:description" content="Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p$ from the data $(X_1,\ldots,X_n)$." />
+<meta name="description" content="Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$." />
+<meta property="og:description" content="Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$." />
 <link rel="canonical" href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" />
 <meta property="og:url" content="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" />
 <meta property="og:site_name" content="Samy Clementz" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-02-15T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Let $(X_1,\\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p$ with respect to the Lebesgue measure, i.e. $\\mathbb{P}(X \\in A) = \\int_{A}p(x)dx$ for all $A \\subset \\mathbb{R}$. Our goal is to estimate $p$ from the data $(X_1,\\ldots,X_n)$.","@type":"BlogPosting","headline":"Density estimation","dateModified":"2020-02-15T00:00:00-06:00","datePublished":"2020-02-15T00:00:00-06:00","url":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html"},"@context":"https://schema.org"}</script>
+{"description":"Let $(X_1,\\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\\mathbb{P}(X \\in A) = \\int_{A}p_X(x)dx$ for all $A \\subset \\mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\\ldots,X_n)$.","@type":"BlogPosting","headline":"Density estimation","dateModified":"2020-02-15T00:00:00-06:00","datePublished":"2020-02-15T00:00:00-06:00","url":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,9 +87,11 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p$ from the data $(X_1,\ldots,X_n)$.</p>
+    <p>Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</p>
 
 <h3 id="the-parametric-way">The parametric way</h3>
+
+<p>One classic way to do so is to assume that $p_X$ belongs to a parametric family ${f_{\theta} : \theta \in \Theta}$ where $\Theta$ is a subset of $\mathbb{R}^k$ with a fixed dimension $k$. For example, one can assume that the data $(X_1,\ldots,X_n)$ was sampled from a normal distribution. In this case, $k=2$, $\Theta = {(\mu, \sigma^2) : \mu &gt; 0, \sigma &gt; 0}$ and $f_{\theta}(.) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(. - \mu)^2}{2\sigma^2}}$.</p>
 
   </div><a class="u-url" href="/blog/2020/02/15/density-estimation.html" hidden></a>
 </article>
