@@ -6,13 +6,13 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: fastpages
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+title: Samy Clementz
+description: 
 github_username: samyclem
 
 # Email and twitter are optional:
 email: 
-twitter_username: "@fastdotai"
+twitter_username: "@samy_clementz"
 
 # OPTIONAL: override baseurl and url if using a custom domain
 url: "https://samyclem.github.io" # the base hostname & protocol for your site, e.g. http://example.com
