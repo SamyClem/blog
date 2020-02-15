@@ -10,3 +10,5 @@ _notebooks/.ipynb_checkpoints
 # Local Netlify folder
 .netlify
 __pycache__
+envblog
+settings.json
