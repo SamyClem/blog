@@ -1,9 +1,6 @@
-# How do we estimate a probability density function ?
+# Density estimation
 
-### The nonparametric way : Kernel density estimation
+Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p$ with respect to the Lebesgue measure, i.e. $\mathds{P}(X \in A) = \int_{A}p(x)dx$ for all $A \subset \mathds{R}$. 
 
-This is a test :
+### The parametric way
 
-$\sum_{i=1}^n i = \frac{n(n+1)}{2}$
-
-$$(X_1,\ldots,X_n)$$
