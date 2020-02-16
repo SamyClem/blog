@@ -1,4 +1,4 @@
-# Density estimation
+# A brief introduction to density estimation
 
 Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$. 
 
@@ -11,3 +11,11 @@ How do we estimate the parameter $\theta$ ? A theoretically-justified method of 
 $$l(\theta) = \sum_{i=1}^n \log f_{\theta}(X_i)$$
 
 Now, we hope that computing the solutions of $\nabla l(\theta) = 0$ gives one and only one maximum likelihood estimate (MLE). This is the case for the above example : the MLE is $\hat{\theta} = (\hat{\mu}, \hat{\sigma}^2)$ where $\hat{\mu} = \frac{1}{n}\sum_{i=1}^nX_i$ and $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n(X_i - \hat{\mu})^2$, as expected.
+
+### The nonparametric way
+
+Unfortunately, the data we gather can be too complex and prior information about $p_X$ may be not available. Murray Rosenblatt, in an article published in 1956, suggested a nonparametric method for estimating $p_X$ using the weak assumption that $p_X$ is continuous function. Here's his reasoning :
+
+If $p_X$ is continuous, then the cumulative distribution function of $X$ defined by $F_X(x) = \mathbb{P}(X\leq x)$ for all $x \in \mathbb{R}$ is differentiable and its derivative is continuous. Indeed, $F_X(x) = \int_{-\infty}^{x}p_X(u)du$, so $F_X'(x) = p_X(x)$ for all $x \in \mathbb{R}$, which means that for $h > 0$ small :
+
+$$p_X(x) \approx \frac{F_X(x+h) - F_X(x)}{h}$$
