@@ -6,6 +6,8 @@ Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables w
 
 One classic way to do so is to assume that $p_X$ belongs to a parametric family $$\{f_{\theta} : \theta \in \Theta \}$$ where $\Theta$ is a subset of $\mathbb{R}^k$ with a fixed dimension $k$. For example, one may assume that the data $(X_1,\ldots,X_n)$ was sampled from a normal distribution. In this case, $k=2$, $$\Theta = \{(\mu, \sigma^2) : \mu \in \mathbb{R}, \sigma > 0\}$$ and $f_{\theta}(.) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(. - \mu)^2}{2\sigma^2}}$.
 
-How do we estimate the parameter $\theta$ ? A theoretically-justified method of estimation is to choose the $\hat{\theta}$ that maximizes the log-likelihood of the data :
+How do we estimate the parameter $\theta$ ? A theoretically-justified method of estimation is to choose $\hat{\theta}$ that maximizes the log-likelihood $l_\theta$ of the data :
 
-$$\hat{\theta}(X_1,\ldots,X_n) = \underset{\theta \in \Theta}{arg\,max}  \sum_{i=1}^n \log f_{\theta}(X_i)$$
+$$l(\theta) = \sum_{i=1}^n \log f_{\theta}(X_i)$$
+
+Now, we hope that computing the solutions of $\nabla l(\theta) = 0$ gives one and only one maximum likelihood estimate (MLE). This is the case for the above example : the MLE is $\hat{\theta} = (\hat{\mu}, \hat{\sigma}^2)$ where $\hat{\mu} = \frac{1}{n}\sum_{i=1}^nX_i$ and $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n(X_i - \hat{\mu})^2$, as expected.
