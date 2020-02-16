@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Density estimation | Samy Clementz</title>
+<title>A brief introduction to density estimation | Samy Clementz</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Density estimation" />
+<meta property="og:title" content="A brief introduction to density estimation" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$." />
 <meta property="og:description" content="Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$." />
@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-02-15T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"Let $(X_1,\\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\\mathbb{P}(X \\in A) = \\int_{A}p_X(x)dx$ for all $A \\subset \\mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\\ldots,X_n)$.","@type":"BlogPosting","url":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html","dateModified":"2020-02-15T00:00:00-06:00","datePublished":"2020-02-15T00:00:00-06:00","headline":"Density estimation","mainEntityOfPage":{"@type":"WebPage","@id":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html"},"@context":"https://schema.org"}</script>
+{"description":"Let $(X_1,\\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\\mathbb{P}(X \\in A) = \\int_{A}p_X(x)dx$ for all $A \\subset \\mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\\ldots,X_n)$.","@type":"BlogPosting","url":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html","dateModified":"2020-02-15T00:00:00-06:00","datePublished":"2020-02-15T00:00:00-06:00","headline":"A brief introduction to density estimation","mainEntityOfPage":{"@type":"WebPage","@id":"https://samyclem.github.io/blog/2020/02/15/density-estimation.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -80,7 +80,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Density estimation</h1>
+    <h1 class="post-title p-name" itemprop="name headline">A brief introduction to density estimation</h1>
     <p class="post-meta"><time class="dt-published" datetime="2020-02-15T00:00:00-06:00" itemprop="datePublished">
         Feb 15, 2020
       </time></p>
@@ -98,6 +98,14 @@
 <script type="math/tex; mode=display">l(\theta) = \sum_{i=1}^n \log f_{\theta}(X_i)</script>
 
 <p>Now, we hope that computing the solutions of $\nabla l(\theta) = 0$ gives one and only one maximum likelihood estimate (MLE). This is the case for the above example : the MLE is $\hat{\theta} = (\hat{\mu}, \hat{\sigma}^2)$ where $\hat{\mu} = \frac{1}{n}\sum_{i=1}^nX_i$ and $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n(X_i - \hat{\mu})^2$, as expected.</p>
+
+<h3 id="the-nonparametric-way">The nonparametric way</h3>
+
+<p>Unfortunately, the data we gather can be too complex and prior information about $p_X$ may be not available. Murray Rosenblatt, in an article published in 1956, suggested a nonparametric method for estimating $p_X$ using the weak assumption that $p_X$ is continuous function. Here’s his reasoning :</p>
+
+<p>If $p_X$ is continuous, then the cumulative distribution function of $X$ defined by $F_X(x) = \mathbb{P}(X\leq x)$ for all $x \in \mathbb{R}$ is differentiable and its derivative is continuous. Indeed, $F_X(x) = \int_{-\infty}^{x}p_X(u)du$, so $F_X’(x) = p_X(x)$ for all $x \in \mathbb{R}$, which means that for $h &gt; 0$ small :</p>
+
+<script type="math/tex; mode=display">p_X(x) \approx \frac{F_X(x+h) - F_X(x)}{h}</script>
 
   </div><a class="u-url" href="/blog/2020/02/15/density-estimation.html" hidden></a>
 </article>
