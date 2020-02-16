@@ -105,7 +105,12 @@
 
 <p>If $p_X$ is continuous, then the cumulative distribution function of $X$ defined by $F_X(x) = \mathbb{P}(X\leq x)$ for all $x \in \mathbb{R}$ is differentiable and its derivative is continuous. Indeed, $F_X(x) = \int_{-\infty}^{x}p_X(u)du$, so $F_X’(x) = p_X(x)$ for all $x \in \mathbb{R}$, which means that for $h &gt; 0$ small :</p>
 
-<script type="math/tex; mode=display">p_X(x) \approx \frac{F_X(x+h) - F_X(x)}{h}</script>
+<script type="math/tex; mode=display">p_X(x) \approx \frac{F_X(x+h) - F_X(x-h)}{2h}.</script>
+
+<p>As an estimate of $F_n$, let’s use the usual empirical cumulative distribution function defined as $\hat{F}<em>n(x) = \frac{1}{n}\sum</em>{i=1}^n 1_{X_i \leq x}$. Then, our estimate of $p_X$ is :
+<script type="math/tex">\hat{p}_h(x) = \frac{\hat{F}_n(x+h) - \hat{F}_n(x-h)}{2h},</script></p>
+
+<p>Where $h&gt;0$ is the bandwidth hyperparameter.</p>
 
   </div><a class="u-url" href="/blog/2020/02/15/density-estimation.html" hidden></a>
 </article>
