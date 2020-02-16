@@ -18,4 +18,9 @@ Unfortunately, the data we gather can be too complex and prior information about
 
 If $p_X$ is continuous, then the cumulative distribution function of $X$ defined by $F_X(x) = \mathbb{P}(X\leq x)$ for all $x \in \mathbb{R}$ is differentiable and its derivative is continuous. Indeed, $F_X(x) = \int_{-\infty}^{x}p_X(u)du$, so $F_X'(x) = p_X(x)$ for all $x \in \mathbb{R}$, which means that for $h > 0$ small :
 
-$$p_X(x) \approx \frac{F_X(x+h) - F_X(x)}{h}$$
+$$p_X(x) \approx \frac{F_X(x+h) - F_X(x-h)}{2h}.$$
+
+As an estimate of $F_n$, let's use the usual empirical cumulative distribution function defined as $\hat{F}_n(x) = \frac{1}{n}\sum_{i=1}^n 1_{X_i \leq x}$. Then, our estimate of $p_X$ is :
+$$\hat{p}_h(x) = \frac{\hat{F}_n(x+h) - \hat{F}_n(x-h)}{2h},$$
+
+Where $h>0$ is the bandwidth hyperparameter.
