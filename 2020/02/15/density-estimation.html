@@ -113,6 +113,23 @@
 
 <p>Where $h&gt;0$ is the bandwidth hyperparameter.</p>
 
+<p>Let’s write it differently so we can better understand what’s going on.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\hat{p}_h(x) = \frac{1}{2nh}\sum_{i=1}^n 1_{x-h<X_i\leq x+h} %]]></script>
+
+<p>Everything is clear now. What we do to estimate $p_X(x)$ is just counting the training examples $X_i$ which are lying within distance $h$ from $x$ and finally dividing this count by the good constant so that $\hat{p}_h$ is a probability density function.</p>
+
+<p>[insert graph bandwidth]</p>
+
+<p>Two problems: 1) discontinuous estimate and 2) give the same attention to the data very close than those at distance a bit less than h. We also discard all the data further.</p>
+
+<p>I will now define what a kernel is, and then I will explain why kernels solve both of these problems.</p>
+
+<p>A kernel is a positive function $K : \mathbb{R} \rightarrow \mathbb{R}$ such that :</p>
+
+<p><script type="math/tex">\int_{-\infty}^{\infty}K(u)du = 1</script>.</p>
+
   </div><a class="u-url" href="/blog/2020/02/15/density-estimation.html" hidden></a>
 </article>
       </div>

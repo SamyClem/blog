@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-16T14:48:58-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-17T19:21:35-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-parametric-way&quot;&gt;The parametric way&lt;/h3&gt;
 
@@ -22,4 +22,21 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{p}_h(x) = \frac{\hat{F}_n(x+h) - \hat{F}_n(x-h)}{2h},&lt;/script&gt;
 
-&lt;p&gt;Where $h&amp;gt;0$ is the bandwidth hyperparameter.&lt;/p&gt;</content><author><name></name></author><summary type="html">Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</summary></entry></feed>
+&lt;p&gt;Where $h&amp;gt;0$ is the bandwidth hyperparameter.&lt;/p&gt;
+
+&lt;p&gt;Let’s write it differently so we can better understand what’s going on.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\hat{p}_h(x) = \frac{1}{2nh}\sum_{i=1}^n 1_{x-h&lt;X_i\leq x+h} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Everything is clear now. What we do to estimate $p_X(x)$ is just counting the training examples $X_i$ which are lying within distance $h$ from $x$ and finally dividing this count by the good constant so that $\hat{p}_h$ is a probability density function.&lt;/p&gt;
+
+&lt;p&gt;[insert graph bandwidth]&lt;/p&gt;
+
+&lt;p&gt;Two problems: 1) discontinuous estimate and 2) give the same attention to the data very close than those at distance a bit less than h. We also discard all the data further.&lt;/p&gt;
+
+&lt;p&gt;I will now define what a kernel is, and then I will explain why kernels solve both of these problems.&lt;/p&gt;
+
+&lt;p&gt;A kernel is a positive function $K : \mathbb{R} \rightarrow \mathbb{R}$ such that :&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\int_{-\infty}^{\infty}K(u)du = 1&lt;/script&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</summary></entry></feed>
