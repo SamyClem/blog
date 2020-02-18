@@ -41,13 +41,13 @@ Three problems :
 <li>How do we choose the hyperparameter $h$ ?</li>
 </ol>
 
+### Kernels
+
 I will now define what a kernel is, and then I will explain why kernels solve both of these problems.
 
 A kernel is a positive function $K : \mathbb{R} \rightarrow \mathbb{R}$ such that :
 
 $$\int_{-\infty}^{\infty}K(u)du = 1$$
-
-The kernels we will be using will play a role similar as those we encounter in Fourier analysis. Because of this, we don't call them probability density functions, even though they share essentially the same definition.
 
 The kernels we will be using will play a role similar as those we encounter in real analysis. Because of this, we don't call them probability density functions, even though they share essentially the same definition.
 
@@ -58,6 +58,8 @@ $$\hat{p}_h(x) = \frac{1}{nh}\sum_{i=1}^n K_{unit}(\frac{X_i-x}{h}),$$
 where $K_{unit}(u) = \frac{1}{2}1_{1<u\leq 1}$ is the unit kernel.
 
 We can now replace $K_{unit}$ by a smooth kernel that gives less and less importance to the training samples furthest from $x$. 
+
+### Performance of the kernel density estimator
 
 Now fix $x \in \mathbb{R}$. We want to assess the performance of $\hat{p}_h(x)$ as an estimate of $p(x)$. This is a problem of point estimation. A common way to measure the accuracy of an point estimator is to look at its mean squared risk :
 
@@ -103,14 +105,25 @@ $$|b_p(x)| \leq Lh\int_{-\infty}^{+\infty} K(u)|u|du,$$
 
 so:
 
-$$b_p(x)^2 \leq C_2h^2,$$
+$$b_p(x)^2 \leq C_2^2h^2,$$
 
 where $C_2 = L\int_{-\infty}^{+\infty}K(u)\|u\|du$.
 
+We see that we are guaranteed to have a small bias if $h$ is small. This is natural because the training samples $X_i$ which give the most information about $p(x)$ are those close to $x$.
+
 Finally we get that the mean squared error is upper bounded by the sum of two terms :
 
-$$\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2h^2.$$
+$$\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2^2h^2.$$
+
+### The role of $h$ and the bias-variance tradeoff
+
+We can plot the different terms of the $\text{MSE}$ as a function of $h$.
 
 ![MSE]({{ site.baseurl }}/images/MSE.png)
 
-image2
+We see that the choice of $h$ is crucial. You do not want $h$ to be too big, otherwise you would give too much attention to training examples that are far from $x$. You do not want $h$ to be too small neither, otherwise the estimator would not be stable under small changes in the training data.
+
+By taking the derivative of the upper bound with respect to $h$, we see that the optimal $h$ is:
+
+$$h^{*} = $\frac{C_1}{2C_2^2}^{\frac{1}{3}}\frac{1}{n^3}.$$
+
