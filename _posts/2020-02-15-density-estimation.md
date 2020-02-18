@@ -111,5 +111,6 @@ Finally we get that the mean squared error is upper bounded by the sum of two te
 
 $$\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2h^2.$$
 
-Normalement pas de tableaux.
-Là non plus.
+![MSE](images/MSE.png)
+
+image
