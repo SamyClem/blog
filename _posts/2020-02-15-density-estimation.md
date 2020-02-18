@@ -75,6 +75,6 @@ $$MSE_p(x) = b_p(x)^2 + \text{Var}_p(\hat{p}_h(x)),$$
 
 where $b_p(x) = \mathbb{E}_p(\hat{p}_h(x)) - p(x)$ and $\text{Var}_p(\hat{p}_h(x)) = \mathbb{E}_p[\hat{p}_h(x)^2] - \mathbb{E}_p[\hat{p}_h(x)]^2$.
 
-*The variance*
+**The variance**
 
-*The bias*
+**The bias**
