@@ -25,3 +25,19 @@ As an estimate of $F_n$, let's use the usual empirical cumulative distribution f
 $$\hat{p}_h(x) = \frac{\hat{F}_n(x+h) - \hat{F}_n(x-h)}{2h},$$
 
 Where $h>0$ is the bandwidth hyperparameter.
+
+Let's write it differently so we can better understand what's going on.
+
+$$\hat{p}_h(x) = \frac{1}{2nh}\sum_{i=1}^n 1_{x-h<X_i\leq x+h}$$
+
+Everything is clear now. What we do to estimate $p_X(x)$ is just counting the training examples $X_i$ which are lying within distance $h$ from $x$ and finally dividing this count by the good constant so that $\hat{p}_h$ is a probability density function.
+
+[insert graph bandwidth]
+
+Two problems: 1) discontinuous estimate and 2) give the same attention to the data very close than those at distance a bit less than h. We also discard all the data further.
+
+I will now define what a kernel is, and then I will explain why kernels solve both of these problems.
+
+A kernel is a positive function $K : \mathbb{R} \rightarrow \mathbb{R}$ such that :
+
+$$\int_{-\infty}^{\infty}K(u)du = 1$$.
