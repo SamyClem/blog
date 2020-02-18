@@ -34,7 +34,12 @@ Everything is clear now. What we do to estimate $p_X(x)$ is just counting the tr
 
 [insert graph bandwidth]
 
-Two problems: 1) discontinuous estimate and 2) give the same attention to the data very close than those at distance a bit less than h. We also discard all the data further.
+Three problems :
+<ol>
+<li>We get a discontinuous density estimate.</li>
+<li>The estimator gives the same attention to the data very close to $x$ than those at distance a bit less than h. We also discard all the data further.</li>
+<li>How do we choose the hyperparameter $h$ ?</li>
+</ol>
 
 I will now define what a kernel is, and then I will explain why kernels solve both of these problems.
 
@@ -43,3 +48,33 @@ A kernel is a positive function $K : \mathbb{R} \rightarrow \mathbb{R}$ such tha
 $$\int_{-\infty}^{\infty}K(u)du = 1$$
 
 The kernels we will be using will play a role similar as those we encounter in Fourier analysis. Because of this, we don't call them probability density functions, even though they share essentially the same definition.
+
+The kernels we will be using will play a role similar as those we encounter in real analysis. Because of this, we don't call them probability density functions, even though they share essentially the same definition.
+
+We can rewrite our estimator in the form :
+
+$$\hat{p}_h(x) = \frac{1}{nh}\sum_{i=1}^n K_{unit}(\frac{X_i-x}{h}),$$
+
+where $K_{unit}(u) = \frac{1}{2}1_{1<u\leq 1}$ is the unit kernel.
+
+We can now replace $K_{unit}$ by a smooth kernel that gives less and less importance to the training samples furthest from $x$. 
+
+[give examples of kernels]
+
+[graph inference]
+
+\subsection{Mean squared error of kernel estimators}
+
+Now fix $x \in \mathbb{R}$. We want to assess the performance of $\hat{p}_h(x)$ as an estimate of $p(x)$. This is a problem of point estimation. A common way to measure the accuracy of an point estimator is to look at its mean squared risk :
+
+$$\text{MSE}_p(x) = \mathbb{E}_{p}[(\hat{p}_h(x) - p(x))^2].$$
+
+Here the expectation is taken with respect to all the possible traning examples $(X_1,\ldots,X_n) \sim p$. As usual, the MSE can be decomposed as the sum of the squared bias and the variance of $\hat{p}_h(x)$ :
+
+$$MSE_p(x) = b_p(x)^2 + \text{Var}_p(\hat{p}_h(x)),$$
+
+where $b_p(x) = \mathbb{E}_p(\hat{p}_h(x)) - p(x)$ and $\text{Var}_p(\hat{p}_h(x)) = \mathbb{E}_p[\hat{p}_h(x)^2] - \mathbb{E}_p[\hat{p}_h(x)]^2$.
+
+*The variance*
+
+*The bias*
