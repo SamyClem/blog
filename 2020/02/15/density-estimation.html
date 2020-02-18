@@ -163,9 +163,75 @@
 
 <p>where $b_p(x) = \mathbb{E}_p(\hat{p}_h(x)) - p(x)$ and $\text{Var}_p(\hat{p}_h(x)) = \mathbb{E}_p[\hat{p}_h(x)^2] - \mathbb{E}_p[\hat{p}_h(x)]^2$.</p>
 
-<p><strong>The variance</strong></p>
+<p>We will now give upper bounds on these two terms.</p>
 
-<p><strong>The bias</strong></p>
+<p><strong>Upper bound on the variance</strong>: $\hat{p}_h(x)$ is a sum of functions of i.i.d. random variables, so:</p>
+
+<script type="math/tex; mode=display">\text{Var}_p(\hat{p}_h(x)) = \frac{1}{nh^2}\text{Var}_p[K(\frac{X_1 - x}{h})].</script>
+
+<p>König-Huygens formula gives us an upper bound for this variance :</p>
+
+<script type="math/tex; mode=display">\text{Var}_p(\hat{p}_h(x)) \leq \frac{1}{nh^2}\mathbb{E}_p[K^2(\frac{X_1 - x}{h})].</script>
+
+<p>But $\mathbb{E}<em>p[K^2(\frac{X_1 - x}{h})] = \int</em>{-\infty}^{+\infty}K^2(\frac{u - x}{h})p(u)du = h\int_{-\infty}^{+\infty}K^2(u)p(x+uh)du.$</p>
+
+<p>Finally, we see that :</p>
+
+<script type="math/tex; mode=display">\text{Var}_p(\hat{p}_h(x)) \leq \frac{C_1}{nh},</script>
+
+<table>
+  <tbody>
+    <tr>
+      <td>where $C_1 =</td>
+      <td> </td>
+      <td>p</td>
+      <td> </td>
+      <td><em>\infty\int</em>{-\infty}^{+\infty}K^2(u)du$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We see that when $h$ is large, then we have small variance. This is no surprise because then a lot of training examples will be taken into account when making inference about $p(x)$, so having a large bandwidth $h$ adds stability.</p>
+
+<p><strong>Upper bound on the bias:</strong> Using the property $\int_{-\infty}^{+\infty}K(u)du = 1$ we get:</p>
+
+<script type="math/tex; mode=display">b_p(x) = \int_{-\infty}^{+\infty}K(u)[p(x + uh) - p(x)]du.</script>
+
+<p>This expression of $b_p(x)$ allows us to see the role of the regularity of $p$. It is natural to think that the most regular $p$ is, the better our estimate will be,  because when making inference about $p(x)$ we only have access to the nearest training example $(X_1,\ldots,X_n)$ which were generated using the amplitude of $p$ near them, so we do not want $p$ to be too wiggly around $x$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Let’s assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that $</td>
+      <td>p(u) - p(v)</td>
+      <td>\leq L</td>
+      <td>u-v</td>
+      <td>$ for all $(u,v) \in \mathbb{R}^2$. Then:</td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="math/tex; mode=display">|b_p(x)| \leq Lh\int_{-\infty}^{+\infty} K(u)|u|du,</script>
+
+<p>so:</p>
+
+<script type="math/tex; mode=display">b_p(x)^2 \leq C_2h^2,</script>
+
+<table>
+  <tbody>
+    <tr>
+      <td>where $C_2 = L\int_{-\infty}^{+\infty}K(u)</td>
+      <td>u</td>
+      <td>du$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Finally we get that the mean squared error is upper bounded by the sum of two terms :</p>
+
+<script type="math/tex; mode=display">\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2h^2.</script>
+
+<p>\subsection{The role of h and the Bias-variance tradeoff}</p>
 
   </div><a class="u-url" href="/blog/2020/02/15/density-estimation.html" hidden></a>
 </article>
