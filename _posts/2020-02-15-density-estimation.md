@@ -125,5 +125,6 @@ We see that the choice of $h$ is crucial. You do not want $h$ to be too big, oth
 
 By taking the derivative of the upper bound with respect to $h$, we see that the optimal $h$ is:
 
-$$h^{*} = $\frac{C_1}{2C_2^2}^{\frac{1}{3}}\frac{1}{n^3}.$$
+$$h^{*} = (\frac{C_1}{2C_2^2})^{\frac{1}{3}}\frac{1}{n^3}.$$
 
+Of course, $h^*$ depends directly on $p$ which is unknown.
