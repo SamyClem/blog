@@ -185,7 +185,7 @@
 
 <p>This expression of $b_p(x)$ allows us to see the role of the regularity of $p$. It is natural to think that the most regular $p$ is, the better our estimate will be,  because when making inference about $p(x)$ we only have access to the nearest training example $(X_1,\ldots,X_n)$ which were generated using the amplitude of $p$ near them, so we do not want $p$ to be too wiggly around $x$.</p>
 
-<p>Let’s assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that <script type="math/tex">\|p(u) - p(v)\| \leq L\|u-v\|$ for all $(u,v) \in \mathbb{R}^2</script>. Then:</p>
+<p>Let’s assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that $|p(u) - p(v)| \leq L|u-v|$ for all $(u,v) \in \mathbb{R}^2$. Then:</p>
 
 <script type="math/tex; mode=display">|b_p(x)| \leq Lh\int_{-\infty}^{+\infty} K(u)|u|du,</script>
 
@@ -199,7 +199,8 @@
 
 <script type="math/tex; mode=display">\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2h^2.</script>
 
-<p>Normalement pas de tableaux.</p>
+<p>Normalement pas de tableaux.
+Là non plus.</p>
 
   </div><a class="u-url" href="/blog/2020/02/15/density-estimation.html" hidden></a>
 </article>
