@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T09:14:47-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T09:18:25-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-parametric-way&quot;&gt;The parametric way&lt;/h3&gt;
 
@@ -78,7 +78,7 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{Var}_p(\hat{p}_h(x)) \leq \frac{1}{nh^2}\mathbb{E}_p[K^2(\frac{X_1 - x}{h})].&lt;/script&gt;
 
-&lt;p&gt;But $\mathbb{E}&lt;em&gt;p[K^2(\frac{X_1 - x}{h})] = \int&lt;/em&gt;{-\infty}^{+\infty}K^2(\frac{u - x}{h})p(u)du = h\int_{-\infty}^{+\infty}K^2(u)p(x+uh)du.$&lt;/p&gt;
+&lt;p&gt;But &lt;script type=&quot;math/tex&quot;&gt;\mathbb{E}_p[K^2(\frac{X_1 - x}{h})] = \int_{-\infty}^{+\infty}K^2(\frac{u - x}{h})p(u)du = h\int_{-\infty}^{+\infty}K^2(u)p(x+uh)du.&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, we see that :&lt;/p&gt;
 
@@ -87,11 +87,11 @@
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;where $C_1 =&lt;/td&gt;
+      &lt;td&gt;where $$C_1 =&lt;/td&gt;
       &lt;td&gt; &lt;/td&gt;
       &lt;td&gt;p&lt;/td&gt;
       &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;\infty\int&lt;/em&gt;{-\infty}^{+\infty}K^2(u)du$.&lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;\infty\int&lt;/em&gt;{-\infty}^{+\infty}K^2(u)du$$.&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -107,11 +107,11 @@
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;Let’s assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that $&lt;/td&gt;
+      &lt;td&gt;Let’s assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that $$&lt;/td&gt;
       &lt;td&gt;p(u) - p(v)&lt;/td&gt;
       &lt;td&gt;\leq L&lt;/td&gt;
       &lt;td&gt;u-v&lt;/td&gt;
-      &lt;td&gt;$ for all $(u,v) \in \mathbb{R}^2$. Then:&lt;/td&gt;
+      &lt;td&gt;$ for all $(u,v) \in \mathbb{R}^2$$. Then:&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
