@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T10:14:02-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T11:39:56-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-parametric-way&quot;&gt;The parametric way&lt;/h3&gt;
 
@@ -40,13 +40,13 @@
 &lt;li&gt;How do we choose the hyperparameter $h$ ?&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h3 id=&quot;kernels&quot;&gt;Kernels&lt;/h3&gt;
+
 &lt;p&gt;I will now define what a kernel is, and then I will explain why kernels solve both of these problems.&lt;/p&gt;
 
 &lt;p&gt;A kernel is a positive function $K : \mathbb{R} \rightarrow \mathbb{R}$ such that :&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\int_{-\infty}^{\infty}K(u)du = 1&lt;/script&gt;
-
-&lt;p&gt;The kernels we will be using will play a role similar as those we encounter in Fourier analysis. Because of this, we don’t call them probability density functions, even though they share essentially the same definition.&lt;/p&gt;
 
 &lt;p&gt;The kernels we will be using will play a role similar as those we encounter in real analysis. Because of this, we don’t call them probability density functions, even though they share essentially the same definition.&lt;/p&gt;
 
@@ -57,6 +57,8 @@
 &lt;p&gt;where $K_{unit}(u) = \frac{1}{2}1_{1&amp;lt;u\leq 1}$ is the unit kernel.&lt;/p&gt;
 
 &lt;p&gt;We can now replace $K_{unit}$ by a smooth kernel that gives less and less importance to the training samples furthest from $x$.&lt;/p&gt;
+
+&lt;h3 id=&quot;performance-of-the-kernel-density-estimator&quot;&gt;Performance of the kernel density estimator&lt;/h3&gt;
 
 &lt;p&gt;Now fix $x \in \mathbb{R}$. We want to assess the performance of $\hat{p}_h(x)$ as an estimate of $p(x)$. This is a problem of point estimation. A common way to measure the accuracy of an point estimator is to look at its mean squared risk :&lt;/p&gt;
 
@@ -102,14 +104,24 @@
 
 &lt;p&gt;so:&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;b_p(x)^2 \leq C_2h^2,&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;b_p(x)^2 \leq C_2^2h^2,&lt;/script&gt;
 
 &lt;p&gt;where $C_2 = L\int_{-\infty}^{+\infty}K(u)|u|du$.&lt;/p&gt;
 
+&lt;p&gt;We see that we are guaranteed to have a small bias if $h$ is small. This is natural because the training samples $X_i$ which give the most information about $p(x)$ are those close to $x$.&lt;/p&gt;
+
 &lt;p&gt;Finally we get that the mean squared error is upper bounded by the sum of two terms :&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2h^2.&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2^2h^2.&lt;/script&gt;
+
+&lt;h3 id=&quot;the-role-of-h-and-the-bias-variance-tradeoff&quot;&gt;The role of $h$ and the bias-variance tradeoff&lt;/h3&gt;
+
+&lt;p&gt;We can plot the different terms of the $\text{MSE}$ as a function of $h$.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/images/MSE.png&quot; alt=&quot;MSE&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;image2&lt;/p&gt;</content><author><name></name></author><summary type="html">Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</summary></entry></feed>
+&lt;p&gt;We see that the choice of $h$ is crucial. You do not want $h$ to be too big, otherwise you would give too much attention to training examples that are far from $x$. You do not want $h$ to be too small neither, otherwise the estimator would not be stable under small changes in the training data.&lt;/p&gt;
+
+&lt;p&gt;By taking the derivative of the upper bound with respect to $h$, we see that the optimal $h$ is:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h^{*} = $\frac{C_1}{2C_2^2}^{\frac{1}{3}}\frac{1}{n^3}.&lt;/script&gt;</content><author><name></name></author><summary type="html">Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</summary></entry></feed>
