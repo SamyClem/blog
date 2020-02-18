@@ -79,13 +79,15 @@ König-Huygens formula gives us an upper bound for this variance :
 
 $$\text{Var}_p(\hat{p}_h(x)) \leq \frac{1}{nh^2}\mathbb{E}_p[K^2(\frac{X_1 - x}{h})].$$
 
-But $$\mathbb{E}_p[K^2(\frac{X_1 - x}{h})] = \int_{-\infty}^{+\infty}K^2(\frac{u - x}{h})p(u)du = h\int_{-\infty}^{+\infty}K^2(u)p(x+uh)du.$$
+But :
+
+$$\mathbb{E}_p[K^2(\frac{X_1 - x}{h})] = \int_{-\infty}^{+\infty}K^2(\frac{u - x}{h})p(u)du = h\int_{-\infty}^{+\infty}K^2(u)p(x+uh)du.$$
 
 Finally, we see that :
 
 $$\text{Var}_p(\hat{p}_h(x)) \leq \frac{C_1}{nh},$$
 
-where $$C_1 = ||p||_\infty\int_{-\infty}^{+\infty}K^2(u)du$$.
+where $$C_1 = \|p\|_\infty\int_{-\infty}^{+\infty}K^2(u)du$$.
 
 We see that when $h$ is large, then we have small variance. This is no surprise because then a lot of training examples will be taken into account when making inference about $p(x)$, so having a large bandwidth $h$ adds stability.
 
@@ -95,7 +97,7 @@ $$b_p(x) = \int_{-\infty}^{+\infty}K(u)[p(x + uh) - p(x)]du.$$
 
 This expression of $b_p(x)$ allows us to see the role of the regularity of $p$. It is natural to think that the most regular $p$ is, the better our estimate will be,  because when making inference about $p(x)$ we only have access to the nearest training example $(X_1,\ldots,X_n)$ which were generated using the amplitude of $p$ near them, so we do not want $p$ to be too wiggly around $x$.
 
-Let's assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that $$|p(u) - p(v)| \leq L|u-v|$ for all $(u,v) \in \mathbb{R}^2$$. Then:
+Let's assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that $$\|p(u) - p(v)\| \leq L\|u-v\|$ for all $(u,v) \in \mathbb{R}^2$$. Then:
 
 $$|b_p(x)| \leq Lh\int_{-\infty}^{+\infty} K(u)|u|du,$$
 
@@ -103,7 +105,7 @@ so:
 
 $$b_p(x)^2 \leq C_2h^2,$$
 
-where $C_2 = L\int_{-\infty}^{+\infty}K(u)|u|du$.
+where $C_2 = L\int_{-\infty}^{+\infty}K(u)\|u\|du$.
 
 Finally we get that the mean squared error is upper bounded by the sum of two terms :
 
