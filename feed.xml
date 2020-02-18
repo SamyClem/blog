@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T12:33:39-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T13:29:25-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;&lt;img src=&quot;/blog/images/illust_density_estimation.png&quot; alt=&quot;MSE&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;the-parametric-way&quot;&gt;The parametric way&lt;/h3&gt;
+&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
+
+&lt;h3 id=&quot;density-estimation--the-parametric-way&quot;&gt;Density estimation : the parametric way&lt;/h3&gt;
 
 &lt;p&gt;One classic way to do so is to assume that $p_X$ belongs to a parametric family &lt;script type=&quot;math/tex&quot;&gt;\{f_{\theta} : \theta \in \Theta \}&lt;/script&gt; where $\Theta$ is a subset of $\mathbb{R}^k$ with a fixed dimension $k$. For example, one may assume that the data $(X_1,\ldots,X_n)$ was sampled from a normal distribution. In this case, $k=2$, &lt;script type=&quot;math/tex&quot;&gt;\Theta = \{(\mu, \sigma^2) : \mu \in \mathbb{R}, \sigma &gt; 0\}&lt;/script&gt; and $f_{\theta}(.) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(. - \mu)^2}{2\sigma^2}}$.&lt;/p&gt;
 
@@ -10,7 +12,7 @@
 
 &lt;p&gt;Now, we hope that computing the solutions of $\nabla l(\theta) = 0$ gives one and only one maximum likelihood estimate (MLE). This is the case for the above example : the MLE is $\hat{\theta} = (\hat{\mu}, \hat{\sigma}^2)$ where $\hat{\mu} = \frac{1}{n}\sum_{i=1}^nX_i$ and $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n(X_i - \hat{\mu})^2$, as expected.&lt;/p&gt;
 
-&lt;h3 id=&quot;the-nonparametric-way&quot;&gt;The nonparametric way&lt;/h3&gt;
+&lt;h3 id=&quot;the-rosenblatt-estimator&quot;&gt;The Rosenblatt estimator&lt;/h3&gt;
 
 &lt;p&gt;Unfortunately, the data we gather can be too complex and prior information about $p_X$ may be not available. Murray Rosenblatt, in an article published in 1956, suggested a nonparametric method for estimating $p_X$ using the weak assumption that $p_X$ is continuous function. Here’s his reasoning :&lt;/p&gt;
 
@@ -40,7 +42,7 @@
 &lt;li&gt;How do we choose the hyperparameter $h$ ?&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;kernels&quot;&gt;Kernels&lt;/h3&gt;
+&lt;h3 id=&quot;smoothing-with-kernels&quot;&gt;Smoothing with kernels&lt;/h3&gt;
 
 &lt;p&gt;I will now define what a kernel is, and then I will explain why kernels solve both of these problems.&lt;/p&gt;
 
@@ -96,7 +98,7 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;b_p(x) = \int_{-\infty}^{+\infty}K(u)[p(x + uh) - p(x)]du.&lt;/script&gt;
 
-&lt;p&gt;This expression of $b_p(x)$ allows us to see the role of the regularity of $p$. It is natural to think that the most regular $p$ is, the better our estimate will be,  because when making inference about $p(x)$ we only have access to the nearest training example $(X_1,\ldots,X_n)$ which were generated using the amplitude of $p$ near them, so we do not want $p$ to be too wiggly around $x$.&lt;/p&gt;
+&lt;p&gt;This expression of $b_p(x)$ allows us to see the role of the regularity of $p$. It is natural to think that the most regular $p$ is, the better our estimate will be, because when making inference about $p(x)$ we only consider the nearest training examples $(X_1,\ldots,X_n)$ which were generated using the amplitude of $p$ near them, so we do not want $p$ to be too wiggly around $x$.&lt;/p&gt;
 
 &lt;p&gt;Let’s assume that $p$ is $L$-Lipschitz, where $L$ is a positive real number. This means that $|p(u) - p(v)| \leq L|u-v|$ for all $(u,v) \in \mathbb{R}^2$. Then:&lt;/p&gt;
 
@@ -126,4 +128,4 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;h^{*} = (\frac{C_1}{2C_2^2})^{\frac{1}{3}}\frac{1}{n^3}.&lt;/script&gt;
 
-&lt;p&gt;Of course, $h^*$ depends directly on $p$ which is unknown.&lt;/p&gt;</content><author><name></name></author><summary type="html">Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</summary></entry></feed>
+&lt;p&gt;Of course, $h^*$ depends directly on $p$ which is unknown.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
