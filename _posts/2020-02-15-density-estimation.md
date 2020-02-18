@@ -59,12 +59,6 @@ where $K_{unit}(u) = \frac{1}{2}1_{1<u\leq 1}$ is the unit kernel.
 
 We can now replace $K_{unit}$ by a smooth kernel that gives less and less importance to the training samples furthest from $x$. 
 
-[give examples of kernels]
-
-[graph inference]
-
-\subsection{Mean squared error of kernel estimators}
-
 Now fix $x \in \mathbb{R}$. We want to assess the performance of $\hat{p}_h(x)$ as an estimate of $p(x)$. This is a problem of point estimation. A common way to measure the accuracy of an point estimator is to look at its mean squared risk :
 
 $$\text{MSE}_p(x) = \mathbb{E}_{p}[(\hat{p}_h(x) - p(x))^2].$$
@@ -114,5 +108,3 @@ where $C_2 = L\int_{-\infty}^{+\infty}K(u)|u|du$.
 Finally we get that the mean squared error is upper bounded by the sum of two terms :
 
 $$\text{MSE}_p(x) \leq \frac{C_1}{nh} + C_2h^2.$$
-
-\subsection{The role of h and the Bias-variance tradeoff}
