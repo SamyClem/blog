@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T04:20:06-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://samyclem.github.io/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samyclem.github.io/blog/" rel="alternate" type="text/html" /><updated>2020-02-18T05:22:58-06:00</updated><id>https://samyclem.github.io/blog/feed.xml</id><title type="html">Samy Clementz</title><entry><title type="html">A brief introduction to density estimation</title><link href="https://samyclem.github.io/blog/2020/02/15/density-estimation.html" rel="alternate" type="text/html" title="A brief introduction to density estimation" /><published>2020-02-15T00:00:00-06:00</published><updated>2020-02-15T00:00:00-06:00</updated><id>https://samyclem.github.io/blog/2020/02/15/density-estimation</id><content type="html" xml:base="https://samyclem.github.io/blog/2020/02/15/density-estimation.html">&lt;p&gt;Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-parametric-way&quot;&gt;The parametric way&lt;/h3&gt;
 
@@ -33,7 +33,12 @@
 
 &lt;p&gt;[insert graph bandwidth]&lt;/p&gt;
 
-&lt;p&gt;Two problems: 1) discontinuous estimate and 2) give the same attention to the data very close than those at distance a bit less than h. We also discard all the data further.&lt;/p&gt;
+&lt;p&gt;Three problems :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;We get a discontinuous density estimate.&lt;/li&gt;
+&lt;li&gt;The estimator gives the same attention to the data very close to $x$ than those at distance a bit less than h. We also discard all the data further.&lt;/li&gt;
+&lt;li&gt;How do we choose the hyperparameter $h$ ?&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;I will now define what a kernel is, and then I will explain why kernels solve both of these problems.&lt;/p&gt;
 
@@ -41,4 +46,34 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\int_{-\infty}^{\infty}K(u)du = 1&lt;/script&gt;
 
-&lt;p&gt;The kernels we will be using will play a role similar as those we encounter in Fourier analysis. Because of this, we don’t call them probability density functions, even though they share essentially the same definition.&lt;/p&gt;</content><author><name></name></author><summary type="html">Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</summary></entry></feed>
+&lt;p&gt;The kernels we will be using will play a role similar as those we encounter in Fourier analysis. Because of this, we don’t call them probability density functions, even though they share essentially the same definition.&lt;/p&gt;
+
+&lt;p&gt;The kernels we will be using will play a role similar as those we encounter in real analysis. Because of this, we don’t call them probability density functions, even though they share essentially the same definition.&lt;/p&gt;
+
+&lt;p&gt;We can rewrite our estimator in the form :&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{p}_h(x) = \frac{1}{nh}\sum_{i=1}^n K_{unit}(\frac{X_i-x}{h}),&lt;/script&gt;
+
+&lt;p&gt;where $K_{unit}(u) = \frac{1}{2}1_{1&amp;lt;u\leq 1}$ is the unit kernel.&lt;/p&gt;
+
+&lt;p&gt;We can now replace $K_{unit}$ by a smooth kernel that gives less and less importance to the training samples furthest from $x$.&lt;/p&gt;
+
+&lt;p&gt;[give examples of kernels]&lt;/p&gt;
+
+&lt;p&gt;[graph inference]&lt;/p&gt;
+
+&lt;p&gt;\subsection{Mean squared error of kernel estimators}&lt;/p&gt;
+
+&lt;p&gt;Now fix $x \in \mathbb{R}$. We want to assess the performance of $\hat{p}_h(x)$ as an estimate of $p(x)$. This is a problem of point estimation. A common way to measure the accuracy of an point estimator is to look at its mean squared risk :&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{MSE}_p(x) = \mathbb{E}_{p}[(\hat{p}_h(x) - p(x))^2].&lt;/script&gt;
+
+&lt;p&gt;Here the expectation is taken with respect to all the possible traning examples $(X_1,\ldots,X_n) \sim p$. As usual, the MSE can be decomposed as the sum of the squared bias and the variance of $\hat{p}_h(x)$ :&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;MSE_p(x) = b_p(x)^2 + \text{Var}_p(\hat{p}_h(x)),&lt;/script&gt;
+
+&lt;p&gt;where $b_p(x) = \mathbb{E}_p(\hat{p}_h(x)) - p(x)$ and $\text{Var}_p(\hat{p}_h(x)) = \mathbb{E}_p[\hat{p}_h(x)^2] - \mathbb{E}_p[\hat{p}_h(x)]^2$.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The variance&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The bias&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Let $(X_1,\ldots,X_n)$ be identically distributed real valued random variables whose common distribution has density $p_X$ with respect to the Lebesgue measure, i.e. $\mathbb{P}(X \in A) = \int_{A}p_X(x)dx$ for all $A \subset \mathbb{R}$. Our goal is to estimate $p_X$ from the data $(X_1,\ldots,X_n)$.</summary></entry></feed>

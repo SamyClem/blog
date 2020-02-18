@@ -122,7 +122,12 @@
 
 <p>[insert graph bandwidth]</p>
 
-<p>Two problems: 1) discontinuous estimate and 2) give the same attention to the data very close than those at distance a bit less than h. We also discard all the data further.</p>
+<p>Three problems :</p>
+<ol>
+<li>We get a discontinuous density estimate.</li>
+<li>The estimator gives the same attention to the data very close to $x$ than those at distance a bit less than h. We also discard all the data further.</li>
+<li>How do we choose the hyperparameter $h$ ?</li>
+</ol>
 
 <p>I will now define what a kernel is, and then I will explain why kernels solve both of these problems.</p>
 
@@ -131,6 +136,36 @@
 <script type="math/tex; mode=display">\int_{-\infty}^{\infty}K(u)du = 1</script>
 
 <p>The kernels we will be using will play a role similar as those we encounter in Fourier analysis. Because of this, we don’t call them probability density functions, even though they share essentially the same definition.</p>
+
+<p>The kernels we will be using will play a role similar as those we encounter in real analysis. Because of this, we don’t call them probability density functions, even though they share essentially the same definition.</p>
+
+<p>We can rewrite our estimator in the form :</p>
+
+<script type="math/tex; mode=display">\hat{p}_h(x) = \frac{1}{nh}\sum_{i=1}^n K_{unit}(\frac{X_i-x}{h}),</script>
+
+<p>where $K_{unit}(u) = \frac{1}{2}1_{1&lt;u\leq 1}$ is the unit kernel.</p>
+
+<p>We can now replace $K_{unit}$ by a smooth kernel that gives less and less importance to the training samples furthest from $x$.</p>
+
+<p>[give examples of kernels]</p>
+
+<p>[graph inference]</p>
+
+<p>\subsection{Mean squared error of kernel estimators}</p>
+
+<p>Now fix $x \in \mathbb{R}$. We want to assess the performance of $\hat{p}_h(x)$ as an estimate of $p(x)$. This is a problem of point estimation. A common way to measure the accuracy of an point estimator is to look at its mean squared risk :</p>
+
+<script type="math/tex; mode=display">\text{MSE}_p(x) = \mathbb{E}_{p}[(\hat{p}_h(x) - p(x))^2].</script>
+
+<p>Here the expectation is taken with respect to all the possible traning examples $(X_1,\ldots,X_n) \sim p$. As usual, the MSE can be decomposed as the sum of the squared bias and the variance of $\hat{p}_h(x)$ :</p>
+
+<script type="math/tex; mode=display">MSE_p(x) = b_p(x)^2 + \text{Var}_p(\hat{p}_h(x)),</script>
+
+<p>where $b_p(x) = \mathbb{E}_p(\hat{p}_h(x)) - p(x)$ and $\text{Var}_p(\hat{p}_h(x)) = \mathbb{E}_p[\hat{p}_h(x)^2] - \mathbb{E}_p[\hat{p}_h(x)]^2$.</p>
+
+<p><em>The variance</em></p>
+
+<p><em>The bias</em></p>
 
   </div><a class="u-url" href="/blog/2020/02/15/density-estimation.html" hidden></a>
 </article>
