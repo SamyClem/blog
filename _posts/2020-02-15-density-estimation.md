@@ -41,3 +41,5 @@ I will now define what a kernel is, and then I will explain why kernels solve bo
 A kernel is a positive function $K : \mathbb{R} \rightarrow \mathbb{R}$ such that :
 
 $$\int_{-\infty}^{\infty}K(u)du = 1$$.
+
+The kernels we will be using will play a role similar as those we encounter in Fourier analysis. Because of this, we don't call them probability density functions, even though they share essentially the same definition.
